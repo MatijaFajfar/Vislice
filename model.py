@@ -4,6 +4,9 @@ POJNOVLJENA_CRKA = 'o'
 NAPACNA_CRKA = '-'
 ZMAGA = 'W'
 PORAZ = 'X'
+ZACETEK = 'burek'
+
+import random
 
 class Igra:
     def __init__(self, geslo, crke):
@@ -62,3 +65,29 @@ import random
 def nova_igra():
     geslo = random.choice(bazen_besed)
     return Igra(geslo, [])
+
+
+class Vislice:
+    def __init__(self):
+        self.igre = {}
+
+    def prost_id_igre(self):
+        if not self.igre:
+            return 0
+        else:
+            return max(self.igre.keys()) + 1
+#        id = random.randint()
+#        while id in self.igre:
+#            id = random.randint()
+#        return id
+
+    def nova_igra(self):
+        i = self.prost_id_igre
+        igra = nova_igra()
+        self.igre[i] = (igra, ZACETEK)
+        return i
+
+    def ugibaj(self, i, crka):
+        igra = self.igre[i]
+        stanje = igra.ugibaj(crka)
+        self.igre[i] = (igra, stanje)
