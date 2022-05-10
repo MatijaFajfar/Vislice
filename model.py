@@ -1,4 +1,4 @@
-STEVILO_DOVOLJENIH_NAPAK = 10
+STEVILO_DOVOLJENIH_NAPAK = 9
 PRAVILNA_CRKA = '+'
 POJNOVLJENA_CRKA = 'o'
 NAPACNA_CRKA = '-'
@@ -82,12 +82,12 @@ class Vislice:
 #        return id
 
     def nova_igra(self):
-        i = self.prost_id_igre
+        i = self.prost_id_igre()
         igra = nova_igra()
         self.igre[i] = (igra, ZACETEK)
         return i
 
     def ugibaj(self, i, crka):
-        igra = self.igre[i]
+        igra, stanje = self.igre[i]
         stanje = igra.ugibaj(crka)
         self.igre[i] = (igra, stanje)
